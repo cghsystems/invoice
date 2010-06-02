@@ -22,13 +22,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class Test {
 	
-	def Dave ="dave"
-	
-	@org.junit.Test
-	void testAnother() {
-		println properties
-	}
-	
 	public static void main(String[] args) {
 		
 		// creation of the document with a certain size and certain margins

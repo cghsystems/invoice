@@ -18,15 +18,15 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 class PDFInvoiceGenerator {
 	
 	Document doc = new Document();
-	def invoiceNumber = 1
+	def invoiceNumber = 2
 	def fileName = "/home/chris/cgh-systems-invoice-${invoiceNumber}.pdf"
 	
 	@Test
 	void build () {
 		
-		Calendar fromDate =  new GregorianCalendar(2010, 03, 1)
-		Calendar toDate =  new GregorianCalendar(2010, 03, 30)		
-		int days = 20;
+		Calendar fromDate =  new GregorianCalendar(2010, 04, 1)
+		Calendar toDate =  new GregorianCalendar(2010, 04, 30)		
+		int days = 18;
 		
 		def output = new FileOutputStream(fileName)
 		build(fromDate.getTime(),toDate.getTime(),days,invoiceNumber,output)

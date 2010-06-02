@@ -21,8 +21,7 @@ class PDFInvoicePeriodBuilder {
 		PdfPTable main = PdfComponenets.newEmptyTable(2)
 		main.setWidthPercentage(PDFInvoiceFormatConstants.TABLE_WIDTH)
 		
-		
-		PdfPTable p = PdfComponenets.newEmptyTable(4);
+		PdfPTable p = PdfComponenets.newEmptyTable(2);
 		p.addCell("  Description:")
 		p.addCell(invoice.description)
 		
@@ -30,9 +29,8 @@ class PDFInvoicePeriodBuilder {
 		cell.setBorder(Rectangle.NO_BORDER)
 		cell.setColspan(3);
 		
-		main.addCell(cell);
+		main.addCell(cell); 
 		main.setHeaderRows(1);
-		
 		
 		main.addCell(leftColumn)
 		main.addCell(rightColumn)
