@@ -76,7 +76,6 @@ class PDFInvoicePeriodBuilder {
 		main.addCell("Total:")
 		main.addCell("£ ${fmt.format(invoice.company.contractDetail.total())}", Font.BOLD)
 			
-		println "return"
 		return main
 	}
 	
