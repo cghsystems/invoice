@@ -1,13 +1,20 @@
 package net.cghsystems.inv;
 
 import net.cghsystems.inv.pdf.PDFInvoiceGenerator;
+import net.cghsystems.pdf.PdfComponenets;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class Create {
 	
 	def invoiceNumber = 2
 	def fileName = "/home/chris/test/cgh-systems-invoice-${invoiceNumber}.pdf"
+	
+	@Before
+	void before() {
+		PdfComponenets.setup()
+	}
 	
 	@Test
 	void build () {

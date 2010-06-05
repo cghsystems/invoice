@@ -12,6 +12,12 @@ import com.itextpdf.text.pdf.PdfPTable
 
 class PdfComponenets {
 	
+	static void setup() {
+		PdfPTable.metaClass.addEmptyCells = {
+			it.times { addCell("") }
+		}
+	}
+	
 	static PdfPTable newEmptyTable(int cols) {
 		newEmptyTable(cols, 8)		
 	}
