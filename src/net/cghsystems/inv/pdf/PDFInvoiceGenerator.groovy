@@ -1,12 +1,9 @@
 package net.cghsystems.inv.pdf
 
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import net.cghsystems.inv.CghsystemsInvoiceBuilder;
 import net.cghsystems.inv.Invoice;
-import org.junit.Test;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph 
 import com.itextpdf.text.pdf.PdfPTable 
@@ -18,19 +15,6 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 class PDFInvoiceGenerator {
 	
 	Document doc = new Document();
-	def invoiceNumber = 2
-	def fileName = "/home/chris/cgh-systems-invoice-${invoiceNumber}.pdf"
-	
-	@Test
-	void build () {
-		
-		Calendar fromDate =  new GregorianCalendar(2010, 04, 1)
-		Calendar toDate =  new GregorianCalendar(2010, 04, 30)		
-		int days = 18;
-		
-		def output = new FileOutputStream(fileName)
-		build(fromDate.getTime(),toDate.getTime(),days,invoiceNumber,output)
-	}
 	
 	def build(fromDate,toDate,days,number,outputStream) {
 		

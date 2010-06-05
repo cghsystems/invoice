@@ -13,12 +13,12 @@ import com.itextpdf.text.pdf.PdfPTable;
 
 class PDFInvoicePeriodBuilder {
 	
-	def build(Invoice invoice) {
+	def _build(Invoice invoice) {
 		
 		PdfPTable leftColumn = buildLeftColumn(invoice)
 		PdfPTable rightColumn = buildRightColumn(invoice)
 		
-		PdfPTable main = PdfComponenets.newEmptyTable(2)
+		PdfPTable main = PdfComponenets.newEmptyTable(3)
 		main.setWidthPercentage(PDFInvoiceFormatConstants.TABLE_WIDTH)
 		
 		PdfPTable p = PdfComponenets.newEmptyTable(2);
@@ -35,6 +35,53 @@ class PDFInvoicePeriodBuilder {
 		main.addCell(leftColumn)
 		main.addCell(rightColumn)
 		return main
+	}
+	
+	def build(Invoice invoice) {
+		PdfPTable main = PdfComponenets.newEmptyTable(4)
+		main.setWidthPercentage(PDFInvoiceFormatConstants.TABLE_WIDTH)
+		main.addCell("Description:")
+		
+		PdfPTable desc = PdfComponenets.newEmptyTable(1)
+		desc.addCell(invoice.description)
+		PdfPCell cell = new PdfPCell(desc);
+		cell.setBorder(Rectangle.NO_BORDER)
+		cell.setColspan(3);
+		main.addCell(cell)
+		main.setHeaderRows(1);
+		
+		main.addCell("Period:")
+		main.addCell("${invoice.fromDate} - ${invoice.toDate}")
+		
+		addCells(main,2)
+		
+		main.addCell("Client:")
+		main.addCell(invoice.client.name)
+		
+		addCells(main,2)
+		
+		main.addCell("Detail:")
+		main.addCell(invoice.company.contractDetail.toString())
+		
+		addCells(main,5)
+		
+		NumberFormat fmt = new DecimalFormat("##.##")
+		main.addCell("£ ${fmt.format(invoice.company.contractDetail.totalNoVat())}")
+			
+		addCells(main,2)
+		main.addCell("Vat @ ${invoice.company.contractDetail.vat}%")
+		main.addCell("£ ${fmt.format(invoice.company.contractDetail.vatOfTotal())}")
+			
+		addCells(main,2)
+		main.addCell("Total:")
+		main.addCell("£ ${fmt.format(invoice.company.contractDetail.total())}", Font.BOLD)
+			
+		println "return"
+		return main
+	}
+	
+	def addCells(table,number) {
+		number.times { table.addCell("") }
 	}
 	
 	def buildRightColumn(Invoice invoice) {
