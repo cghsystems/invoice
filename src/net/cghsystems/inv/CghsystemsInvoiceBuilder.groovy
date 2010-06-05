@@ -41,7 +41,7 @@ class CghsystemsInvoiceBuilder {
 		Address registeredOffice = buildCompanyAddress()
 		String name = "CGH Systems Ltd"
 		String companyNumber = "7173828" 
-		String vatNumber = "PENDING"
+		String vatNumber = "988 0979 40"
 		
 		ContractDetail contractDetail = new ContractDetail(days:days, rate:400, vat:17.5)
 		BankDetails bankDetails = buildBankDetails()
