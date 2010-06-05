@@ -8,7 +8,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph 
 import com.itextpdf.text.pdf.PdfPTable 
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.draw.LineSeparator;
 
 
 
@@ -26,11 +25,11 @@ class PDFInvoiceGenerator {
 		addMetaData();
 		
 		addHeader(invoice)
-		addLineBreak()
+		doc.addLineBreak()
 		addInvoiceSummary(invoice);
-		addLineBreak()
+		doc.addLineBreak()
 		addPeriodSummary(invoice)
-		addLineBreak()
+		doc.addLineBreak()
 		addPaymentSummary(invoice)
 		doc.close();
 	}
@@ -63,11 +62,5 @@ class PDFInvoiceGenerator {
 		section.add(summaryTable)
 		
 		doc.add(section)
-	}
-	
-	
-	void addLineBreak() {
-		doc.add(new Paragraph(" "))
-		doc.add(new LineSeparator())	
 	}
 }
