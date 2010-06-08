@@ -4,7 +4,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 
 import net.cghsystems.inv.Invoice;
-import net.cghsystems.pdf.PdfComponenets;
 
 class PDFInvoicePaymentSummaryBuilder {
 	
@@ -18,7 +17,7 @@ class PDFInvoicePaymentSummaryBuilder {
 	
 	void addPaymentSummaryToParagraph(Paragraph paragraph, Invoice invoice) {
 		
-		PdfPTable leftColumn = PdfComponenets.newEmptyTable(1)
+		PdfPTable leftColumn = new PdfPTable(1)
 		leftColumn.addCell("Company:")
 		leftColumn.addCell("Registered Office:")
 		leftColumn.addCell("Bank:")
@@ -28,7 +27,7 @@ class PDFInvoicePaymentSummaryBuilder {
 		leftColumn.addCell("Reference:")
 		leftColumn.addCell("Remittance Advice:")
 		
-		PdfPTable rightColumn = PdfComponenets.newEmptyTable(1)
+		PdfPTable rightColumn = new PdfPTable(1)
 		rightColumn.addCell(invoice.company.name)
 		rightColumn.addCell(invoice.company.registeredOffice.toString())
 		rightColumn.addCell(invoice.company.bankDetails.name)
@@ -38,7 +37,7 @@ class PDFInvoicePaymentSummaryBuilder {
 		rightColumn.addCell(invoice.company.bankDetails.reference)
 		rightColumn.addCell(invoice.company.bankDetails.remittanceAdvice)
 		
-		PdfPTable main = PdfComponenets.newEmptyTable(2)
+		PdfPTable main = new PdfPTable(2)
 		main.setWidthPercentage(PDFInvoiceFormatConstants.TABLE_WIDTH)
 		main.addCell(leftColumn)
 		main.addCell(rightColumn)

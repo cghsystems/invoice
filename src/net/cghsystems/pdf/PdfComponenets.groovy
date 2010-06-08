@@ -10,15 +10,33 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell 
 import com.itextpdf.text.pdf.PdfPTable 
 import com.itextpdf.text.pdf.draw.LineSeparator;
-
-
+import org.codehaus.groovy.runtime.InvokerHelper 
 
 class PdfComponenets {
 	
 	static void setup() {
-		println "Adding addEmptyCells metaMethod to PdfPTable"
+		println "Adding metaMethods to PdfPTable"
 		PdfPTable.metaClass.addEmptyCells = {
 			it.times { addCell("") }
+		}
+		
+		def clazz = new Delegate(); 
+		InvokerHelper.metaRegistry.setMetaClass(PdfPTable, clazz)
+		
+		PdfPTable.metaClass.addCell = { String text ->
+			addCell(text, Font.NORMAL, 8) 
+		}
+		
+		PdfPTable.metaClass.addCell = { String text, int fontStyle ->
+			addCell(text, fontStyle, 8) 
+		}
+		
+		PdfPTable.metaClass.addCell = {String text, int fontStyle, int fontSize ->
+			PdfPCell pCell = new PdfPCell()
+			Font font = FontFactory.getFont(FontFactory.HELVETICA, fontSize)
+			font.setStyle(fontStyle)
+			Phrase phrase = new Phrase(text, font)
+			addCell(phrase)
 		}
 		
 		println "Adding addLineBreak metaMethod to Document"
@@ -27,30 +45,15 @@ class PdfComponenets {
 			add(new LineSeparator())	
 		}
 	}
-	
-	static PdfPTable newEmptyTable(int cols) {
-		newEmptyTable(cols, 8)		
+}
+
+class Delegate extends DelegatingMetaClass {
+	Delegate() {
+		super(PdfPTable)
 	}
-	
-	static PdfPTable newEmptyTable(int cols, int fontSize) {
-		PdfPTable table = new PdfPTable(cols) {
-			
-			void addCell(String text) {
-				addCell(text, Font.NORMAL)   		
-			}
-			
-			@Override
-			void addCell(String text, int fontStyle) {
-				PdfPCell pCell = new PdfPCell()
-				
-				Font font = FontFactory.getFont(FontFactory.HELVETICA, fontSize)
-				font.setStyle(fontStyle)
-				Phrase phrase = new Phrase(text, font)
-				addCell(phrase)
-			}
-		}
-		
-		table.getDefaultCell().setBorder(Rectangle.NO_BORDER)
-		return table
+	Object invokeConstructor(Object[] arguments) {
+		PdfPTable p =  super.invokeConstructor(arguments)
+		p.getDefaultCell().setBorder(Rectangle.NO_BORDER)
+		p
 	}
 }

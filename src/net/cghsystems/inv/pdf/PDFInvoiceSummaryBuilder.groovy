@@ -4,7 +4,6 @@ import com.itextpdf.text.pdf.PdfPTable
 
 import net.cghsystems.inv.Client;
 import net.cghsystems.inv.Invoice 
-import net.cghsystems.pdf.PdfComponenets;
 
 class PDFInvoiceSummaryBuilder {
 	
@@ -13,7 +12,7 @@ class PDFInvoiceSummaryBuilder {
 		PdfPTable col1 = buildLeftHandSummaryColumn(invoice) 
 		PdfPTable col2 = buildRightHandSummaryColumn(invoice)
 		
-		PdfPTable mainTable = PdfComponenets.newEmptyTable(2)
+		PdfPTable mainTable = new PdfPTable(2)
 		mainTable.setWidthPercentage(PDFInvoiceFormatConstants.TABLE_WIDTH)
 		
 		mainTable.addCell(col1)
@@ -24,13 +23,13 @@ class PDFInvoiceSummaryBuilder {
 	
 	def buildLeftHandSummaryColumn(Invoice invoice) {
 		
-		PdfPTable a = PdfComponenets.newEmptyTable(1)
+		PdfPTable a = new PdfPTable(1)
 		a.addCell("Invoice to:")
 		
-		PdfPTable t = PdfComponenets.newEmptyTable(1)
+		PdfPTable t = new PdfPTable(1)
 		addCounterpartAddressToColumn(invoice.client, t)
 		
-		PdfPTable col = PdfComponenets.newEmptyTable(2)
+		PdfPTable col = new PdfPTable(2)
 		col.addCell(a)
 		col.addCell(t)
 		return col
@@ -46,15 +45,15 @@ class PDFInvoiceSummaryBuilder {
 	
 	def buildRightHandSummaryColumn(Invoice invoice) {
 		
-		PdfPTable col2 = PdfComponenets.newEmptyTable(2)
+		PdfPTable col2 = new PdfPTable(2)
 		
-		PdfPTable t = PdfComponenets.newEmptyTable(1)
+		PdfPTable t = new PdfPTable(1)
 		t.addCell("Invoice Number:")
 		t.addCell("Company Number:")
 		t.addCell("VAT Number:")
 		t.addCell("Tax Point Date:")
 		
-		PdfPTable d = PdfComponenets.newEmptyTable(1)
+		PdfPTable d = new PdfPTable(1)
 		d.addCell("${invoice.number}")
 		d.addCell("${invoice.company.companyNumber}")
 		d.addCell("${invoice.company.vatNumber}")

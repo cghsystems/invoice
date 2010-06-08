@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import net.cghsystems.inv.Invoice 
-import net.cghsystems.pdf.PdfComponenets;
 
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Rectangle;
@@ -14,11 +13,11 @@ import com.itextpdf.text.pdf.PdfPTable;
 class PDFInvoicePeriodBuilder {
 	
 	def build(Invoice invoice) {
-		PdfPTable main = PdfComponenets.newEmptyTable(4)
+		PdfPTable main = new PdfPTable(4)
 		main.setWidthPercentage(PDFInvoiceFormatConstants.TABLE_WIDTH)
 		main.addCell("Description:")
 		
-		PdfPTable desc = PdfComponenets.newEmptyTable(1)
+		PdfPTable desc = new PdfPTable(1)
 		desc.addCell(invoice.description)
 		PdfPCell cell = new PdfPCell(desc);
 		cell.setBorder(Rectangle.NO_BORDER)
