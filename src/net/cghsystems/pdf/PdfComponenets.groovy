@@ -16,12 +16,11 @@ class PdfComponenets {
 	
 	static void setup() {
 		println "Adding metaMethods to PdfPTable"
+		InvokerHelper.metaRegistry.setMetaClass(PdfPTable, new Delegate())
+		
 		PdfPTable.metaClass.addEmptyCells = {
 			it.times { addCell("") }
 		}
-		
-		def clazz = new Delegate(); 
-		InvokerHelper.metaRegistry.setMetaClass(PdfPTable, clazz)
 		
 		PdfPTable.metaClass.addCell = { String text ->
 			addCell(text, Font.NORMAL, 8) 
