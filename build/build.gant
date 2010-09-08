@@ -1,0 +1,37 @@
+sourceDir = '../src/' 
+buildDirectory = "../classes"
+workspace = "/home/chris/dev"
+destdir = "${workspace}/workspace/web-admin/war/WEB-INF/lib"
+
+ant.taskdef (  name : 'groovyc' , classname : 'org.codehaus.groovy.ant.Groovyc' )
+
+includeTargets << gant.targets.Clean 
+clobberPattern << '*.classes'
+
+path ( id : 'classpath' ) {
+  fileset ( dir : "${workspace}/lib/" , includes : '*.jar' )
+}
+
+
+target  ( compile : "Compile the Invoice project" ) {
+    clobber()
+    mkdir( dir: buildDirectory )
+    echo "Compiling Invoice project" 
+    groovyc ( srcdir : sourceDir , destdir : buildDirectory, classpathref: 'classpath' )
+}
+
+
+target  ( copyToWebAdmin : "Copy the compile JAR to the relevant location in the web-admin project" ) {
+    echo "Copying Invoice project to ${destdir}/invoice.jar"
+    jar ( destfile : "${destdir}/invoice.jar" , basedir : buildDirectory, excludes : "build.gant" )
+}
+
+
+target  ( compileAndDeploy : "Builds invoice project " ) { 
+    echo "Starting compileAndDeploy"    
+    depends( compile ) 
+    depends( copyToWebAdmin )
+    echo "compileAndDeploy complete."
+}
+
+setDefaultTarget ( compileAndDeploy )
