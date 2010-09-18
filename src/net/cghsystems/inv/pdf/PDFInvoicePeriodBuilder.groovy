@@ -13,11 +13,11 @@ import com.itextpdf.text.pdf.PdfPTable;
 class PDFInvoicePeriodBuilder {
 
   def build(Invoice invoice) {
-    PdfPTable main = new PdfPTable(4)
+    PdfPTable main = new PdfPTable(false, 4)
     main.setWidthPercentage(PDFInvoiceFormatConstants.TABLE_WIDTH)
     main.addCell("Description:")
 
-    PdfPTable desc = new PdfPTable(1)
+    PdfPTable desc = new PdfPTable(false, 1)
     desc.addCell(invoice.description)
     PdfPCell cell = new PdfPCell(desc);
     cell.setBorder(Rectangle.NO_BORDER)

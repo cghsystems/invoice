@@ -1,5 +1,5 @@
 sourceDir = '../src/' 
-buildDirectory = "../classes"
+buildDirectory = "classes"
 workspace = "/home/chris/dev"
 destdir = "${workspace}/workspace/web-admin/war/WEB-INF/lib"
 
