@@ -1,5 +1,7 @@
 package net.cghsystems.inv;
 
+import net.cghsystems.Company;
+
 class Invoice {
 	int number
 	String description

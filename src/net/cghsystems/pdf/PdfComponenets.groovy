@@ -53,5 +53,9 @@ class PdfComponenets {
 			add(new Paragraph(" "))
 			add(new LineSeparator())
 		}
+		
+		Document.metaClass.newLine = {
+			add(new Paragraph(" "))
+		}
 	}
 }

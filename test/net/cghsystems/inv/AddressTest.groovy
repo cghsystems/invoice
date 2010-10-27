@@ -1,5 +1,7 @@
 package net.cghsystems.inv;
 
+import net.cghsystems.pdf.Address;
+
 import org.junit.Before;
 import org.junit.Test;
 
