@@ -24,7 +24,7 @@ public class CreateInvoice {
 		int days = 18;
 		
 		def output = new FileOutputStream(fileName)
-		new PDFInvoiceGenerator().build(fromDate.getTime(), toDate.getTime(), days, invoiceNumber, output)
+		new PDFInvoiceGenerator().build(fromDate.getTime(), toDate.getTime(), days, dividendNumber, output)
 	}
 	
 }

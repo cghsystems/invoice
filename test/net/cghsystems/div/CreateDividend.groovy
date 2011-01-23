@@ -10,8 +10,8 @@ import org.junit.Test;
 
 public class CreateDividend {
 	
-	def invoiceNumber = 2
-	def fileName = "/home/chris/test/cgh-systems-dividend-${invoiceNumber}.pdf"
+	def dividendPayment = 2
+	def fileName = "/home/chris/test/cgh-systems-dividend-${dividendPayment}.pdf"
 	
 	@Before
 	void before() {
@@ -21,11 +21,10 @@ public class CreateDividend {
 	@Test
 	void build() {
 		
-		Calendar date = new GregorianCalendar(2010, 04, 1)
-		BigDecimal dividend = 6000.00
+		Calendar date = new GregorianCalendar(2010, 10,1)
+		BigDecimal dividend = 11000.00
 		
 		def output = new FileOutputStream(fileName)
 		new PDFDividendGenerator().build(date.getTime(), dividend, output)
 	}
-	
 }

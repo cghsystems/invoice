@@ -31,11 +31,10 @@ class CghsystemsInvoiceBuilder {
 	}
 	
 	def buildClient() {
-		Address add = new Address(line1: "200 Brook Drive",
-		line2: "Green Park",
-		town: "Reading",
+		Address add = new Address(line1: "4 Winnersh Fields",
+		town: "Winnersh",
 		county: "Berkshire",
-		postcode: "RG2 6UB")
+		postcode: "RG41 5QS")
 		
 		Client client = new Client(address: add, name: "Data Inc UK Ltd")
 	}
