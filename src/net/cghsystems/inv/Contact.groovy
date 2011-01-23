@@ -1,6 +1,7 @@
 package net.cghsystems.inv;
 
 public class Contact {
-	def emailAddress = "sian@dataincuk.com"
-	def name = "Siân"
+	final emailAddress = "sian@dataincuk.com"
+	final name = "Siân"
+		final ccEmailAddress = "sian@dataincuk.com"
 }
