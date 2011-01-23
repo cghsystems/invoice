@@ -14,7 +14,7 @@ class ComapnyBuilder {
 		String companyNumber = "7173828"
 		String vatNumber = "988 0979 40"
 		
-		ContractDetail contractDetail = new ContractDetail(days: days, rate: 400, vat: 17.5)
+		ContractDetail contractDetail = new ContractDetail(days: days, rate: 400, vat: 20)
 		BankDetails bankDetails = buildBankDetails()
 		Date created = new Date();
 		
